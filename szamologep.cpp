@@ -91,7 +91,7 @@ static void Bejar(Elem ag, stack<double> &verem) //Amiert a fat felepitettuk job
 	{
 		eredmeny = szam1 + szam2;
 	}
-	if (ag.muvelet == '-')
+	if (ag.muvelet == '~')
 	{
 		eredmeny = szam1 - szam2;
 	}
@@ -109,7 +109,14 @@ static void Bejar(Elem ag, stack<double> &verem) //Amiert a fat felepitettuk job
 	}
 	if (ag.muvelet == 'v')
 	{
-		eredmeny = pow(szam2, 1 / szam1);
+		if (szam2>=0 && szam1!=0)
+		{
+			eredmeny = pow(szam2, 1 / szam1);
+		}
+		else
+		{
+			eredmeny = 0;
+		}
 	}
 	verem.push(eredmeny);
 }
@@ -119,7 +126,7 @@ static vector<string> SplitSzam(string s) //Kivesszuk a muveleti jeleket
 	int segedIndex = 0;
 	for (int i = 0; i < s.length(); i++)
 	{
-		if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/' || s[i] == '^' || s[i] == 'v')
+		if (s[i] == '+' || s[i] == '~' || s[i] == '*' || s[i] == '/' || s[i] == '^' || s[i] == 'v')
 		{
 			if (i - segedIndex != 0)//Ha van olyan string, hogy 5++3 akkor a splitbe csak az 5 es a 3 kerul
 			{
@@ -207,7 +214,7 @@ static vector<Elem> SplitMuveletek(string s) //Ez fogja nekunk kivenni a muvelet
 	for (int i = 0; i < s.length(); i++)
 	{
 
-		if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/' || s[i] == '^' || s[i] == 'v')
+		if (s[i] == '+' || s[i] == '~' || s[i] == '*' || s[i] == '/' || s[i] == '^' || s[i] == 'v')
 		{
 			e.muvelet = s[i];
 			muveletek.push_back(e);
