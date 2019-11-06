@@ -120,7 +120,7 @@ static void Bejar(Elem ag, stack<double> &verem) //Amiert a fat felepitettuk job
 	}
 	verem.push(eredmeny);
 }
-static vector<string> SplitSzam(string s) //Kivesszuk a muveleti jeleket
+static vector<string> SplitSzam(string s) //Kivesszuk az operandusokat
 {
 	vector<string> split;
 	int segedIndex = 0;
@@ -194,7 +194,7 @@ static int SorrendBealitas(vector<Elem> &muveletek) //Beallitja a muveletek sorr
 	}
 	for (int i = 0; i < muveletek.size(); i++)
 	{
-		if (muveletek[i].muvelet == '+' || muveletek[i].muvelet == '-')
+		if (muveletek[i].muvelet == '+' || muveletek[i].muvelet == '~')
 		{
 			muveletek[i].sorrend = sorrendErtek;
 			sorrendErtek++;
